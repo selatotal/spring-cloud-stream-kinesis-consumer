@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        mqttEvents-in-0:
+          destination: mqtt_events-v2
+          group: spring-kinesis-consumer
+          content-type: text/plain
+      kinesis:
+        bindings:
+          mqttEvents-in-0:
+            consumer:
+              records-limit: 100
+              shard-iterator-type: LATEST
+cloud:
+  aws:
+    region:
+      static: us-east-1
+    stack:
+      auto: false
